@@ -1,0 +1,13 @@
+load("@npm//@bazel/jasmine:index.bzl","jasmine_node_test") # loading the node dependencies
+
+filegroup(
+    name="node_calculator",
+    srcs=["calculator.js"],
+    visibility = ["//apps/node_web:__pkg__"]
+)
+
+jasmine_node_test(
+    name="calculator_test", # name
+    srcs=["calculator.spec.js"], # spec files
+    data = [":node_calculator"]
+)
